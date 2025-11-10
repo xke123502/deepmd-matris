@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+deepmd_matris/__init__.py
+deepmd_matris/argcheck.py
+deepmd_matris/dp_convert.py
+deepmd_matris/model_e0.py
+deepmd_matris.egg-info/PKG-INFO
+deepmd_matris.egg-info/SOURCES.txt
+deepmd_matris.egg-info/dependency_links.txt
+deepmd_matris.egg-info/entry_points.txt
+deepmd_matris.egg-info/requires.txt
+deepmd_matris.egg-info/top_level.txt

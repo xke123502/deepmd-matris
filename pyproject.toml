@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=61", "wheel", "cmake"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepmd-matris"
+version = "0.1.0"
+description = "MatRIS integration for DeePMD-kit"
+authors = [{name = "DeePMD Team", email = "deepmd@example.com"}]
+readme = "README.md"
+license = {text = "LGPL-3.0"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+    "Natural Language :: English",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS :: MacOS X",  
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+requires-python = ">=3.8"
+keywords = ["molecular dynamics", "machine learning", "deep learning", "matris"]
+
+dependencies = [
+    "deepmd-kit[pytorch]>=3.1.0",
+    "torch",
+    "torch-geometric",
+    "ase",
+    "numpy",
+    "dargs>=0.3.1",
+    "pymatgen",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+]
+
+[project.urls]
+Homepage = "https://github.com/deepmodeling/deepmd-kit"
+Repository = "https://github.com/deepmodeling/deepmd-kit"
+Documentation = "https://docs.deepmodeling.com/projects/deepmd"
+
+[project.entry-points."deepmd.pt"]
+matris = "deepmd_matris.model_e0:MatRISModel"
+
+[tool.setuptools.packages.find]
+include = ["deepmd_matris*"]
+
+[tool.setuptools.package-data]
+deepmd_matris = ["*.json"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers --disable-warnings"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["deepmd_matris"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+precision = 2
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]

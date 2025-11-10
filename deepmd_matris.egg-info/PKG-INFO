@@ -1,0 +1,128 @@
+Metadata-Version: 2.4
+Name: deepmd-matris
+Version: 0.1.0
+Summary: MatRIS integration for DeePMD-kit
+Author-email: DeePMD Team <deepmd@example.com>
+License: LGPL-3.0
+Project-URL: Homepage, https://github.com/deepmodeling/deepmd-kit
+Project-URL: Repository, https://github.com/deepmodeling/deepmd-kit
+Project-URL: Documentation, https://docs.deepmodeling.com/projects/deepmd
+Keywords: molecular dynamics,machine learning,deep learning,matris
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: deepmd-kit[pytorch]>=3.1.0
+Requires-Dist: torch
+Requires-Dist: torch-geometric
+Requires-Dist: ase
+Requires-Dist: numpy
+Requires-Dist: dargs>=0.3.1
+Requires-Dist: pymatgen
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Dynamic: license-file
+
+# DeepMD-MatRIS
+
+A plugin that integrates [MatRIS](https://github.com/your-repo/MatRIS) with [DeePMD-kit](https://github.com/deepmodeling/deepmd-kit) for machine learning interatomic potentials.
+
+## Overview
+
+This plugin allows you to use MatRIS models within the DeePMD-kit ecosystem, leveraging DeePMD-kit's training infrastructure, data handling, and deployment tools.
+This repository is also refered to [Deepmd-GNN].
+
+## Installation
+
+### Prerequisites
+
+1. Install DeePMD-kit with PyTorch backend:
+```bash
+pip install deepmd-kit[torch]
+```
+
+2. Install MatRIS:
+```bash
+cd /path/to/MatRIS
+pip install -e .
+```
+
+### Install DeepMD-MatRIS
+
+```bash
+cd /path/to/deepmd-matris
+pip install -e .
+```
+
+## Quick Start
+
+### 1. Prepare Training Data
+
+Prepare your training data in DeePMD-kit format (same as for other DeePMD models):
+
+### 2. Configuration
+
+Create an input JSON file (see `examples/water/matris/input.json`):
+
+```json
+{
+  "model": {
+    "type": "matris",
+    "type_map": ["O", "H"],
+    "pairwise_cutoff": 6.0,
+    "three_body_cutoff": 4.5,
+    "sel": "auto",
+    "num_layers": 10,
+    "is_intensive": true,
+    "is_conservation": true
+  }
+}
+```
+
+### 3. Training
+
+Train the model using DeePMD-kit's training script:
+
+```bash
+dp --pt train input.json
+```
+
+## Examples
+
+See the `examples/` directory for complete training examples:
+
+- `examples/water/matris/`: Water molecule training with O and H atoms
+
+## Features
+
+- **Graph Neural Network**: MatRIS uses atom graph and line graph for message passing
+- **Conservative Forces**: Automatic differentiation for physically consistent forces and stress
+- **Three-body Interactions**: Explicit three-body terms for better accuracy
+- **DeePMD Integration**: Seamless integration with DeePMD-kit training and inference
+
+## License
+
+This project is licensed under the LGPL-3.0 license, consistent with both DeePMD-kit and MatRIS.
+
+## Acknowledgments
+
+This plugin builds upon the excellent work of:
+- The MatRIS team
+- The DeePMD-kit team at Deep Modeling
+- The PyTorch Geometric developers 

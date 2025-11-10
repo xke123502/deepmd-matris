@@ -1,0 +1,69 @@
+{
+  "_comment1": " model parameters",
+  "model": {
+    "type": "matris",
+    "type_map": [
+      "O",
+      "H"
+    ],
+    "pairwise_cutoff": 6.0,
+    "three_body_cutoff": 4.5,
+    "sel": "auto",
+    "num_layers": 6,
+    "node_feat_dim": 64,
+    "edge_feat_dim": 64,
+    "three_body_feat_dim": 64,
+    "num_radial": 5,
+    "num_angular": 5,
+    "is_intensive": true,
+    "is_conservation": true,
+    "_comment2": " reduced model size for testing"
+  },
+
+  "learning_rate": {
+    "type": "exp",
+    "decay_steps": 5000,
+    "start_lr": 0.001,
+    "stop_lr": 3.51e-8,
+    "_comment3": "that's all"
+  },
+
+  "loss": {
+    "type": "ener",
+    "start_pref_e": 0.02,
+    "limit_pref_e": 1,
+    "start_pref_f": 1000,
+    "limit_pref_f": 1,
+    "start_pref_v": 0,
+    "limit_pref_v": 0,
+    "_comment4": " that's all"
+  },
+
+  "training": {
+    "training_data": {
+      "systems": [
+        "../data/data_0/",
+        "../data/data_1/",
+        "../data/data_2/"
+      ],
+      "batch_size": 1,
+      "_comment5": "that's all"
+    },
+    "validation_data": {
+      "systems": [
+        "../data/data_3"
+      ],
+      "batch_size": 1,
+      "numb_btch": 3,
+      "_comment6": "that's all"
+    },
+    "numb_steps": 1,
+    "seed": 10,
+    "disp_file": "lcurve.out",
+    "disp_freq": 1,
+    "save_freq": 1,
+    "_comment7": "that's all"
+  },
+
+  "_comment8": "that's all"
+}
