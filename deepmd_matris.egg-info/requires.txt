@@ -1,0 +1,11 @@
+deepmd-kit[pytorch]>=3.1.0
+torch
+torch-geometric
+ase
+numpy
+dargs>=0.3.1
+pymatgen
+
+[test]
+pytest
+pytest-cov

@@ -1,0 +1,2 @@
+[deepmd.pt]
+matris = deepmd_matris.model_e0:MatRISModel
