@@ -264,7 +264,7 @@ class MatRISModel(BaseModel):
         self.use_precomputed_graphs = use_precomputed_graphs
         self.train_systems = []  # 将由 Trainer 通过 set_systems() 设置
         self.valid_systems = []  # validation systems
-        print(f"use_precomputed_graphs: {use_precomputed_graphs}")
+        # print(f"use_precomputed_graphs: {use_precomputed_graphs}")
         # Store all parameters
         self.params = {
             "type_map": type_map,
@@ -351,12 +351,12 @@ class MatRISModel(BaseModel):
         """
         self.train_systems = train_systems      # ← 存储training的systems路径
         self.valid_systems = valid_systems if valid_systems is not None else []  # ← 存储validation的systems路径
-        print(f"[set_systems] Training systems: {len(train_systems)}")
-        if len(train_systems) > 0:
-            print(f"  示例: {train_systems[0]}")
-        print(f"[set_systems] Validation systems: {len(self.valid_systems)}")
-        if len(self.valid_systems) > 0:
-            print(f"  示例: {self.valid_systems[0]}")
+        #print(f"[set_systems] Training systems: {len(train_systems)}")
+        #if len(train_systems) > 0:
+            #print(f"  示例: {train_systems[0]}")
+        #print(f"[set_systems] Validation systems: {len(self.valid_systems)}")
+        #if len(self.valid_systems) > 0:
+            #print(f"  示例: {self.valid_systems[0]}")
     
     def _load_precomputed_graphs(self, sid: int, fid: list[int], is_train: bool = True):
         """
@@ -386,12 +386,12 @@ class MatRISModel(BaseModel):
         
         system_path = systems[sid]
         graphs = []
-        print(f"system_path: {system_path}, sid: {sid}, is_train: {is_train}")
+        #print(f"system_path: {system_path}, sid: {sid}, is_train: {is_train}")
         for frame_id in fid:
             graph_path = os.path.join(system_path, "graphs", f"{frame_id}.pt")
             graph_dict = torch.load(graph_path)  # 加载字典
             graph = RadiusGraph.from_dict(graph_dict)  # 转换为RadiusGraph对象
-            print(f"graph_path: {graph_path}")
+            #print(f"graph_path: {graph_path}")
             graphs.append(graph)
         
         return graphs
@@ -414,10 +414,10 @@ class MatRISModel(BaseModel):
             raise ValueError("fparam is unsupported")
         if aparam is not None:
             raise ValueError("aparam is unsupported")
-        print(f"sid: {sid}, fid: {fid}, is_train: {is_train}")            
+        #print(f"sid: {sid}, fid: {fid}, is_train: {is_train}")            
         nf, nloc = atype.shape
-        print(f"nf: {nf}, nloc: {nloc}")
-        print(f"coord: {coord.shape}")
+        #print(f"nf: {nf}, nloc: {nloc}")
+        #print(f"coord: {coord.shape}")
         coord = coord.view(nf, nloc, 3)
         coord = coord.to(torch.float32)
         
